@@ -45,6 +45,8 @@ The injector specific configuration can be specified as follows:
 interface JsonInjectorConfiguration {
   active?: boolean;
   directory?: string;
+  faker?: boolean;
+  fakerLocaleName?: string;
 }
 ```
 
