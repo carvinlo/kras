@@ -47,6 +47,7 @@ interface JsonInjectorConfiguration {
   directory?: string;
   faker?: boolean;
   fakerLocaleName?: string;
+  partiaMatch?: boolean;
 }
 ```
 

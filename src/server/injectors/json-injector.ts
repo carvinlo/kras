@@ -29,6 +29,7 @@ export interface JsonInjectorConfig {
   randomize?: boolean;
   faker?: boolean;
   fakerLocaleName?: string;
+  partiaMatch?: boolean;
 }
 
 export interface DynamicJsonInjectorConfig {
@@ -131,7 +132,7 @@ export default class JsonInjector implements KrasInjector {
   dispose() {
     this.watcher.close();
   }
-  
+
   contentProcess(req: KrasRequest, content: string | Buffer){
     if(this.config.faker){
       const localeName = this.config.fakerLocaleName || 'language';
@@ -164,7 +165,7 @@ export default class JsonInjector implements KrasInjector {
         if (entry.active) {
           const request = entry.request;
 
-          if (compareRequests(request, req)) {
+          if (compareRequests(request, req, this.config.partiaMatch)) {
             const rand = this.config.randomize;
             const response = find(entry.response, rand);
             const name = this.name;
